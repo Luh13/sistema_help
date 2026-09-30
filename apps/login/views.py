@@ -13,7 +13,7 @@ def login(request):
           auth_login(request, user)
           return redirect('index')
 
-        return render(request, 'login.html', {'error:' "Nome de usuário ou senha inválidos."})
+        return render(request, 'login.html', {'error': "Nome de usuário ou senha inválidos."})
     
     return render(request, "login.html")
 
