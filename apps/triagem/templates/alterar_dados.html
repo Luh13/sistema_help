@@ -1,41 +1,41 @@
 {% extends 'base-triagem.html' %}
-{% block title %}Cadastrar Novo Paciente{% endblock %}
+{% block title %} Alterar Dados do Paciente {% endblock %}
 {% block content %}
     <div class="container vh-100">
         <h1 class="mt-5">
-            Cadastrar Novo Paciente
+            Alterar Dados do Paciente
         </h1>
         <hr>
         {% if error %}<p>{{error}}</p>{% endif%}
-        <form action="{% url 'novo_paciente' %}" method="POST">
+        <form action="{% url 'alterar_dados' paciente.codigo_paciente %}" method="POST">
             {% csrf_token %}
             <div class="col-12">
                 <label for="username" class="form-label">
                     Nome do paciente:
                 </label>
-                <input type="text" class="form-control" name="nome" required>
+                <input type="text" class="form-control" name="nome" value="{{ paciente.nome }}" required>
             </div>
             <div class="col-12">
                 <label for="cpf" class="form-control" name="cpf">
                     CPF:
                 </label>
-                <input type="text" class="form-control" name="cpf" required>
+                <input type="text" class="form-control" name="cpf" value="{{ paciente.cpf }}" required>
             </div>
               <div class="col-12">
                 <label for="data_nascimento" class="form-control" name="data_nascimento">
                     Data de nascimento:
                 </label>
-                <input type="date" class="form-control" name="data_nascimento" required>
+                <input type="date" class="form-control" name="data_nascimento" value="{{ paciente.data_nascimento|date:'Y-m-d' }}" required>
             </div>
             <div class="col-12">
                 <label for="sintomas" class="form-label">
                     Sintomas:
                 </label>
-                <textarea type="text" class="form-control" name="sintomas" required></textarea>
+                <textarea name="text" class="form-control" name="sintomas" required>{{ paciente.sintomas }}</textarea>
             </div>
             <div class="d-flex justify-content-center mt-5">
                 <button type="submit" class="btn btn-success col-4">
-                    Cadastrar
+                    Alterar dados
                 </button>
             </div>
         </form>

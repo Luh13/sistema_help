@@ -2,4 +2,24 @@
 {% block title %}Triagem | Home page {% endblock %}
 {% block content %}
     <h1 class="mt-5">Triagem | Home page</h1>
+    <h2>Olá, {{ user.username }}, bem vindo!</h2>
+    <h2>Lista de Pacientes</h2>
+    <hr>
+    <ul>
+        {% for paciente in pacientes %}
+        <li>
+            {{ paciente.codigo_paciente }} |
+            {{ paciente.nome }} |
+            {{ paciente.cpf }} |
+            {{ paciente.data_nascimento|date:"d/m/Y" }} |
+            <a href="{% url 'alterar_dados' paciente.codigo_paciente %}">Alterar</a> |
+            <a href="{% url 'deletar_paciente' paciente.codigo_paciente %}">Excluir</a>
+            <ul>
+                <li>{{ paciente.sintomas }}</li>
+            </ul>
+        </li>
+        {% empty %}
+        <li>Nenhum paciente cadastrado na triagem.</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
